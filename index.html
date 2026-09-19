@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        min-height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        overflow: hidden;
+    }
+
+    /* Main Container Animation */
+    .todo-container {
+        width: 450px;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+        animation: containerShow 0.8s ease;
+    }
+
+    @keyframes containerShow {
+        from {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Heading Animation */
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 8px;
+
+        animation: headingShow 0.8s ease 0.2s both;
+    }
+
+    @keyframes headingShow {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Subtitle Animation */
+    .subtitle {
+        text-align: center;
+        color: #777;
+        margin-bottom: 25px;
+
+        animation: subtitleShow 0.8s ease 0.3s both;
+    }
+
+    @keyframes subtitleShow {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Input Area */
+    .input-area {
+        display: flex;
+        gap: 10px;
+
+        animation: inputAreaShow 0.8s ease 0.4s both;
+    }
+
+    @keyframes inputAreaShow {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    #taskInput {
+        flex: 1;
+        padding: 13px;
+
+        border: 2px solid #ddd;
+        border-radius: 8px;
+
+        font-size: 15px;
+        outline: none;
+
+        transition: 0.3s;
+    }
+
+    #taskInput:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Button */
+    #addbtn {
+        padding: 13px 18px;
+
+        border: none;
+        border-radius: 8px;
+
+        background: #667eea;
+        color: white;
+
+        font-size: 15px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+    }
+
+    #addbtn:hover {
+        background: #5568d9;
+        transform: translateY(-3px) scale(1.03);
+
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    #addbtn:active {
+        transform: scale(0.95);
+    }
+
+    /* Task List */
+    #taskList {
+        list-style: none;
+        margin-top: 25px;
+    }
+
+    /* New Task Animation */
+    #taskList li {
+        background: #f4f5f9;
+
+        padding: 14px 15px;
+        margin-bottom: 10px;
+
+        border-radius: 8px;
+
+        color: #333;
+        font-size: 16px;
+
+        border-left: 5px solid #667eea;
+
+        animation: taskShow 0.5s ease;
+
+        transition: 0.3s;
+    }
+
+    @keyframes taskShow {
+        from {
+            opacity: 0;
+            transform: translateX(-30px) scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+    }
+
+    /* Task Hover Animation */
+    #taskList li:hover {
+        transform: translateX(6px);
+
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+    }
+</style>
+
+</head>
+<body>
+
+<div class="todo-container">
+    <h1>About Me</h1>
+
+    <p class="subtitle">Organize your tasks easily</p>
+
+    <div class="input-area">
+        <input 
+            type="text" 
+            id="taskInput" 
+            placeholder="Add a new task"
+        >
+
+        <button id="addbtn">Add Task</button>
+    </div>
+
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+    const taskInput = document.getElementById('taskInput');
+    const addbtn = document.getElementById('addbtn');
+    const taskList = document.getElementById('taskList');
+
+    addbtn.addEventListener('click', function() {
+
+        let task = taskInput.value;
+
+        if (task === "") {
+            alert("Please enter a task.");
+            return;
+        }
+
+        let li = document.createElement('li');
+
+        li.innerText = task;
+
+        taskList.appendChild(li);
+
+        taskInput.value = "";
+    });
+</script>
+
+</body>
+</html>
